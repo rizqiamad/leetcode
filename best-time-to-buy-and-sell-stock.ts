@@ -27,17 +27,35 @@ Constraints:
 
 */
 
+// function maxProfit(prices: number[]): number {
+//   let max: number = 0;
+
+//   for (let i = 0; i < prices.length; i++) {
+//     let daybuy = prices[i];
+//     for (let j = i + 1; j < prices.length; j++) {
+//       let daysell = prices[j];
+//       const margin = daysell - daybuy;
+//       if (margin > max) {
+//         max = margin;
+//       }
+//     }
+//   }
+
+//   return max;
+// }
+
 function maxProfit(prices: number[]): number {
+  let minprice: number = prices[0];
+  let iPrice: number = prices[1];
   let max: number = 0;
 
   for (let i = 0; i < prices.length; i++) {
-    let daybuy = prices[i];
-    for (let j = i + 1; j < prices.length; j++) {
-      let daysell = prices[j];
-      const margin = daysell - daybuy;
-      if (margin > max) {
-        max = margin;
-      }
+    minprice = Math.min(minprice, prices[i]);
+    iPrice = prices[i + 1];
+
+    const margin = iPrice - minprice;
+    if (margin > max) {
+      max = margin;
     }
   }
 
